@@ -157,3 +157,26 @@ class Prod(Dev):
     ALLOWED_HOSTS = values.ListValue(["localhost", "0.0.0.0", ".codio.io"])
 
     
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s"
+        },
+        "brief": {
+            "format": '%(asctime)s %(levelname)-8s %(name)-15s %(message)s'
+        }
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler", 
+            "stream": "ext://sys.stdout",
+            "formatter": "verbose",
+        },
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "DEBUG",
+    }
+}

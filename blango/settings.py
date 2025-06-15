@@ -32,6 +32,9 @@ class Dev(Configuration):
     # DEBUG = True
     DEBUG = values.Value(True)
 
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+    ACCOUNT_ACTIVATION_DAYS = 7
+
 
     ALLOWED_HOSTS = ['*']
 

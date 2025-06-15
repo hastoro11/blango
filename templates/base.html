@@ -10,29 +10,26 @@
   <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-  <title>Hello, world!</title>
+  <title>{% block title %}Welcome to Blango{% endblock %}</title>
+
 </head>
 <body>
-<div class="navbar navbar-expand-sm navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a href="" class="navbar-brand">Navbar</a>
-    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-expanded="false" aria-label="Toggle navigation" aria-controls="navbarSupportedContent">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a href="{% url 'blog:index' %}" class="nav-link active">Home</a>
-        </li>
-        <li class="nav-item">
-          <a href="" class="nav-link">Link</a>
-        </li>
-      </ul>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Blango Home</a>
+        <div class="d-flex">
+            {% if request.user.is_active %}
+                <a class="nav-link" href="{% url "profile" %}">Profile</a>
+                <a class="nav-link" href="{% url "logout" %}">Log Out</a>
+            {% else %}
+                <a class="nav-link" href="{% url "django_registration_register" %}">Register</a>
+                <a class="nav-link" href="{% url "login" %}">Log In</a>
+            {% endif %}
+
+        </div>
     </div>
-  </div>
-</div>
-<div class="container-fluid">
+</nav>
+
 
   {% block content %}
 
